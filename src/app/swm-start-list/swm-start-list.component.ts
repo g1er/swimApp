@@ -10,14 +10,14 @@ export class SwmStartListComponent implements OnInit {
 
   participants = [];
 
-  // constructor(private startListService: SwmStartListService) {}
+  constructor(private startListService: SwmStartListService) {}
 
   ngOnInit() {
-    // this.startListService
-    // .getParticipants()
-    // .subscribe((response) => {
-    //   console.log(response);
-    // });
+    this.startListService
+    .getParticipants()
+    .subscribe((response) => {
+      console.log(response);
+    });
   }
 
 }
