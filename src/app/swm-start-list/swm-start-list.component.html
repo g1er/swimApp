@@ -1,0 +1,9 @@
+<div class='swimBlockStyle'>
+  <button class="btn btn-primary">Add participant</button>
+  <hr>
+  <ul>
+    <li *ngFor = "let participant of participants">
+      {{participant.lane}} {{participant.name}} {{participant.dicipline}}
+    </li>
+  </ul>
+</div>
