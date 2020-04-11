@@ -1,0 +1,10 @@
+<h4 appFont [hoverFont] = "'32px'" [defaultFont] = "'18px'">Please, register in form below:</h4>
+
+<input type="text" class="form-control" placeholder="Insert fist and second name" [(ngModel)] = "partName" [disabled] = maxPart>
+
+<input type="text" class="form-control" placeholder="Insert swimming style" [(ngModel)] = "partSwStyle" [disabled] = maxPart>
+
+<input type="text" class="form-control" placeholder="Insert distance" [(ngModel)] = "partDistance" [disabled] = maxPart><br>
+
+<input type="button" class="btn btn-success" value="Register me!" (click) = register()>
+<h4 *ngIf = maxPart>Sorry, there's no any vacant lanes to compete =( Try next time.</h4>

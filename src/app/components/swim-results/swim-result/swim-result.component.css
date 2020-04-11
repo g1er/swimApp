@@ -1,0 +1,7 @@
+.swimBlockStyle{
+    margin: 10px 15%;
+    /* width: 90%; */
+    border: 1px solid #abc;
+    border-radius: 7px;
+    padding: 10px
+}

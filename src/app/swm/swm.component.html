@@ -1,0 +1,29 @@
+<div class="container">
+  <!-- <input type="button" class="btn btn-info" value="Start" (click) = addNewText()>
+  <br><br>
+  <p>{{ addText }}</p>
+  <input type="text" class="form-control" (keyup.enter) = onKeyUp($event)>
+  <input type="text" class="form-control" [(ngModel)] = "textFieldValue">
+  <p>{{ textFieldValue }}</p> -->
+
+  <!-- ngIF ELSE ft. ngClass & ngStyle--> 
+ <div class="swimBlockStyle">
+  <input id = "styleLine" type="text" class="form-control" placeholder="butterfly, backstroke, breaststroke, freestyle" (input) = activeButton($event)><br>
+
+  <input type="button" class="btn btn-warning" value="Switch" (click) = chosenStyle() [disabled] = "!styleStatus">
+
+  <p *ngIf = "!styleStatus">
+    This style is not active!
+  </p>
+
+  <p *ngIf = "!swimStyleStatus || !styleStatus; else choseReply">
+    Choose your swimming style!
+  </p>
+
+  <ng-template #choseReply>
+    <p>You chose {{ swimStyle }}! Get ready for race!</p>
+  </ng-template>
+</div> 
+
+
+</div>
