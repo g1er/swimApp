@@ -1,23 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { SwmStartListService } from './swm-start-list.service';
+
+interface Particips{
+  name: string;
+  dicipline: string;
+  lane: number;
+}
 
 @Component({
   selector: 'app-swm-start-list',
   templateUrl: './swm-start-list.component.html',
   styleUrls: ['./swm-start-list.component.css']
 })
-export class SwmStartListComponent implements OnInit {
+export class SwmStartListComponent {
 
-  participants = [];
+  participants: Particips[] = [];
 
   constructor(private startListService: SwmStartListService) {}
 
-  ngOnInit() {
+
+  loadParticipants(){
+
     this.startListService
     .getParticipants()
-    .subscribe((response) => {
-      console.log(response);
-    });
+    .subscribe((participants: Particips[]) => {
+      this.participants = participants;
+
   }
 
 }
