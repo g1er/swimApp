@@ -17,7 +17,7 @@ import { SwmStartListService } from './swm-start-list/swm-start-list.service'
     FormsModule,
     HttpClientModule
   ],
-  providers: [ SwmStartListService],
+  providers: [SwmStartListService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
