@@ -1,9 +1,10 @@
 {
-    "participants": [
+  "participants": [
     {
-        "name": "John",
-        "dicipline": "100 freestyle",
-        "lane": 1        
+      "name": "John",
+      "dicipline": "100 freestyle",
+      "lane": 1,
+      "id": 1
     }
-    ]
-  }
+  ]
+}

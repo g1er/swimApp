@@ -15,6 +15,7 @@ interface Particips{
 export class SwmStartListComponent {
 
   participants: Particips[] = [];
+  newApplication: string = '';
 
   constructor(private startListService: SwmStartListService) {}
 
@@ -26,6 +27,14 @@ export class SwmStartListComponent {
     .subscribe((participants: Particips[]) => {
       this.participants = participants;
     })
+  }
+
+  addParticipants() {
+    this.startListService.addNewApp(this.newApplication)
+      .subscribe((data => {
+        console.log(data);
+      }));
+    this.newApplication = '';
   }
 
 }
