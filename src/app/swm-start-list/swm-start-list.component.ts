@@ -25,7 +25,7 @@ export class SwmStartListComponent {
     .getParticipants()
     .subscribe((participants: Particips[]) => {
       this.participants = participants;
-
+    })
   }
 
 }
