@@ -2,9 +2,29 @@
   "participants": [
     {
       "name": "John",
-      "dicipline": "100 freestyle",
+      "discipline": "200 IM",
       "lane": 1,
       "id": 1
+    },
+    {
+      "name": "Jack",
+      "discipline": "200 IM",
+      "id": 2
+    },
+    {
+      "name": "Dale",
+      "discipline": "200 IM",
+      "id": 3
+    },
+    {
+      "name": "Jane",
+      "discipline": "200 IM",
+      "id": 4
+    },
+    {
+      "name": "Fill",
+      "discipline": "200 IM",
+      "id": 5
     }
   ]
 }

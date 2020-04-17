@@ -9,12 +9,16 @@ export class SwmStartListService {
        return this.http.get('http://localhost:3000/participants');
     }
 
-    addNewApp(newApplication: string) {
+    addNewApp(newParticipant: string) {
         const data = {
-            newName: newApplication,
-            newDistance: '200 IM',
-            newLane: ''
+            name: newParticipant,
+            discipline: '200 IM'
         };
         return this.http.post('http://localhost:3000/participants', data);
+    }
+
+    setNewDiscipline(participant: any, discipline: string){
+        participant.discipline = discipline;
+        return this.http.put(`http://localhost:3000/participants/${participant.discipline}`, participant);
     }
 }
