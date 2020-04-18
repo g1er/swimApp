@@ -19,6 +19,6 @@ export class SwmStartListService {
 
     setNewDiscipline(participant: any, discipline: string){
         participant.discipline = discipline;
-        return this.http.put(`http://localhost:3000/participants/${participant.discipline}`, participant);
+        return this.http.put(`http://localhost:3000/participants/${participant.id}`, participant);
     }
 }

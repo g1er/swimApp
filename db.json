@@ -2,29 +2,34 @@
   "participants": [
     {
       "name": "John",
-      "discipline": "200 IM",
+      "discipline": "100 backstroke",
       "lane": 1,
       "id": 1
     },
     {
       "name": "Jack",
-      "discipline": "200 IM",
+      "discipline": "50 breaststroke",
       "id": 2
     },
     {
       "name": "Dale",
-      "discipline": "200 IM",
+      "discipline": "100 backstroke",
       "id": 3
     },
     {
       "name": "Jane",
-      "discipline": "200 IM",
+      "discipline": "200 backstroke",
       "id": 4
     },
     {
       "name": "Fill",
-      "discipline": "200 IM",
+      "discipline": "1500 freestyle",
       "id": 5
+    },
+    {
+      "name": "Oliver",
+      "discipline": "50 freestyle",
+      "id": 6
     }
   ]
 }
