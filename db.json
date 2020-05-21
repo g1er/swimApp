@@ -7,29 +7,19 @@
       "id": 1
     },
     {
-      "name": "Jack",
-      "discipline": "50 breaststroke",
+      "name": "Anatoly Kochnev",
+      "discipline": "200 backstroke",
       "id": 2
     },
     {
-      "name": "Dale",
-      "discipline": "100 backstroke",
-      "id": 3
-    },
-    {
-      "name": "Jane",
-      "discipline": "200 backstroke",
+      "name": "Kim Karandashian",
+      "discipline": "100 breaststroke",
       "id": 4
     },
     {
-      "name": "Fill",
-      "discipline": "1500 freestyle",
+      "name": "Samuel L. Jackson",
+      "discipline": "200 ID",
       "id": 5
-    },
-    {
-      "name": "Oliver",
-      "discipline": "50 freestyle",
-      "id": 6
     }
   ]
 }

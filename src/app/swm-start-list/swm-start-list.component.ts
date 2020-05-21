@@ -16,6 +16,7 @@ export class SwmStartListComponent {
 
   participants: Particips[] = [];
   newParticipant: string = '';
+  newDiscipline: string = '';
   distances = [
     '50 butterfly',
     '100 butterfly',
@@ -49,11 +50,12 @@ export class SwmStartListComponent {
   }
 
   addParticipants() {
-    this.startListService.addNewApp(this.newParticipant)
+    this.startListService.addNewApp(this.newParticipant, this.newDiscipline)
       .subscribe((participant: Particips) => {
         this.participants.push(participant);
       });
     this.newParticipant = '';
+    this.newDiscipline = '';
   }
 
   chooseDistance(){
@@ -65,6 +67,13 @@ export class SwmStartListComponent {
     this.startListService.setNewDiscipline(participant, this.chooseDistance())
     .subscribe((data) => {
       console.log(data);
+    })
+  }
+
+  deleteDiscipline(participant: Particips){
+    this.startListService.delDiscipline(participant)
+    .subscribe((data) => {
+      this.participants = this.participants.filter(p => p.id != participant.id);
     })
   }
 
