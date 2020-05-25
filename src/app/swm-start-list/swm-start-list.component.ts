@@ -14,7 +14,7 @@ interface Particips{
 })
 export class SwmStartListComponent {
 
-  participants: Particips[] = [];
+  participants: any;
   newParticipant: string = '';
   newDiscipline: string = '';
   distances = [
@@ -41,21 +41,16 @@ export class SwmStartListComponent {
 
 
   loadParticipants(){
-
-    this.startListService
-    .getParticipants()
-    .subscribe((participants: Particips[]) => {
-      this.participants = participants;
-    })
+      this.participants = this.startListService.getParticipants();
   }
 
   addParticipants() {
     this.startListService.addNewApp(this.newParticipant, this.newDiscipline)
       .subscribe((participant: Particips) => {
         this.participants.push(participant);
+        this.newParticipant = '';
+        this.newDiscipline = '';
       });
-    this.newParticipant = '';
-    this.newDiscipline = '';
   }
 
   chooseDistance(){
@@ -63,14 +58,14 @@ export class SwmStartListComponent {
     return this.distances[num];
   }
 
-  setDiscipline(participant: Particips){
+  setDiscipline(participant: any){
     this.startListService.setNewDiscipline(participant, this.chooseDistance())
     .subscribe((data) => {
       console.log(data);
     })
   }
 
-  deleteDiscipline(participant: Particips){
+  deleteDiscipline(participant: any){
     this.startListService.delDiscipline(participant)
     .subscribe((data) => {
       this.participants = this.participants.filter(p => p.id != participant.id);

@@ -6,7 +6,7 @@
   <button class="btn btn-success" (click) = 'addParticipants()'>Add participant</button>
   <hr>
   <ul>
-    <li *ngFor = "let participant of participants">
+    <li *ngFor = "let participant of participants | async">
       {{participant.id}}. {{participant.name}} {{participant.discipline}}
       <button class="btn btn-info btn-sm" (click) = setDiscipline(participant)>Set discipline</button>&nbsp;
       <button class="btn btn-danger btn-sm" (click) = deleteDiscipline(participant)>Delete discipline</button>
