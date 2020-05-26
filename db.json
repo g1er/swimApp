@@ -1,9 +1,30 @@
 {
-    "participants": [
+  "participants": [
     {
-        "name": "John",
-        "dicipline": "100 freestyle",
-        "lane": 1        
+      "name": "John",
+      "discipline": "100 backstroke",
+      "lane": 1,
+      "id": 1
+    },
+    {
+      "name": "Anatoly Kochnev",
+      "discipline": "200 backstroke",
+      "id": 2
+    },
+    {
+      "name": "Kim Karandashian",
+      "discipline": "100 breaststroke",
+      "id": 4
+    },
+    {
+      "name": "Samuel L. Jackson",
+      "discipline": "200 freestyle",
+      "id": 5
+    },
+    {
+      "name": "Jennifer Lopez",
+      "discipline": "100 backstroke",
+      "id": 7
     }
-    ]
-  }
+  ]
+}

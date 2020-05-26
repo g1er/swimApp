@@ -1,12 +1,15 @@
 <div class='swimBlockStyle'>
-  <input type="text" [(ngModel)] = 'addApplication' />
+  <input type="text" class = "form-control" placeholder="New participant name" [(ngModel)] = 'newParticipant' /><br>
+  <input type="text" class = "form-control" placeholder="New participant's discipline" [(ngModel)] = 'newDiscipline' />
   <hr>
-  <button class="btn btn-primary" (click) = 'loadParticipants()'>Load participant</button>
+  <button class="btn btn-primary" (click) = 'loadParticipants()'>Load participant</button>&nbsp;
   <button class="btn btn-success" (click) = 'addParticipants()'>Add participant</button>
   <hr>
   <ul>
-    <li *ngFor = "let participant of participants">
-      {{participant.lane}}. {{participant.name}} {{participant.dicipline}}
+    <li *ngFor = "let participant of participants | async">
+      {{participant.id}}. {{participant.name}} {{participant.discipline}}
+      <button class="btn btn-info btn-sm" (click) = setDiscipline(participant)>Set discipline</button>&nbsp;
+      <button class="btn btn-danger btn-sm" (click) = deleteDiscipline(participant)>Delete discipline</button>
     </li>
   </ul>
 </div>
