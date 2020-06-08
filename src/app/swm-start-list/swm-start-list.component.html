@@ -1,14 +1,15 @@
 <div class='swimBlockStyle'>
   <input type="text" class = "form-control" placeholder="New participant name" [(ngModel)] = 'newParticipant' /><br>
-  <input type="text" class = "form-control" placeholder="New participant discipline" [(ngModel)] = 'newDiscipline' />
+  <input type="text" class = "form-control" placeholder="New participant's discipline" [(ngModel)] = 'newDiscipline' />
   <hr>
   <button class="btn btn-primary" (click) = 'loadParticipants()'>Load participant</button>&nbsp;
   <button class="btn btn-success" (click) = 'addParticipants()'>Add participant</button>
   <hr>
   <ul>
-    <li *ngFor = "let participant of participants">
+    <li *ngFor = "let participant of participants | async">
       {{participant.id}}. {{participant.name}} {{participant.discipline}}
-      <button class="btn btn-info" (click) = setDiscipline(participant)>Set discipline</button>
+      <button class="btn btn-info btn-sm" (click) = setDiscipline(participant)>Set discipline</button>&nbsp;
+      <button class="btn btn-danger btn-sm" (click) = deleteDiscipline(participant)>Delete discipline</button>
     </li>
   </ul>
 </div>
