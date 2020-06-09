@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { SwmStartListService } from './swm-start-list.service';
-
-interface Particips{
+import { combineLatest, Observable, BehaviorSubject } from 'rxjs';
+import { map, filter } from 'rxjs/operators';
+interface Particips {
   name: string;
   discipline: string;
   id: number;
@@ -14,7 +15,7 @@ interface Particips{
 })
 export class SwmStartListComponent {
 
-  participants: any;
+  participants: BehaviorSubject<any> = new BehaviorSubject([]);
   newParticipant: string = '';
   newDiscipline: string = '';
   distances = [
@@ -40,17 +41,33 @@ export class SwmStartListComponent {
   constructor(private startListService: SwmStartListService) {}
 
 
-  loadParticipants(){
-      this.participants = this.startListService.getParticipants();
+  loadParticipants() {
+      this.startListService.getParticipants().pipe(
+        map(res => {
+          this.participants.next(res)
+          return res;
+        })
+      ).subscribe();
   }
 
+
   addParticipants() {
-    this.startListService.addNewApp(this.newParticipant, this.newDiscipline)
-      .subscribe((participant: Particips) => {
-        this.participants.push(participant);
+    combineLatest(
+      this.startListService.addNewApp(this.newParticipant, this.newDiscipline),
+      this.participants
+    ).pipe(
+        map(([participant, participants]) => {
+          const combineParticips = [...participants];
+          combineParticips.push(participant);
+          return combineParticips;
+        }),
+      map(participants => {
+        this.participants.next(participants);
         this.newParticipant = '';
         this.newDiscipline = '';
-      });
+        return participants;
+      })
+      ).subscribe();
   }
 
   chooseDistance(){
@@ -65,11 +82,11 @@ export class SwmStartListComponent {
     })
   }
 
-  deleteDiscipline(participant: any){
-    this.startListService.delDiscipline(participant)
-    .subscribe((data) => {
-      this.participants = this.participants.filter(p => p.id != participant.id);
-    })
-  }
+  // deleteDiscipline(participant: any) {
+  //   this.startListService.delDiscipline(participant)
+  //   .subscribe((data) => {
+  //     this.participants = this.participants.filter(p => p.id != participant.id);
+  //   })
+  // }
 
 }
