@@ -1,12 +1,13 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import {Observable} from "rxjs";
+import { Particips } from '../models/interfaces';
 @Injectable()
 export class SwmStartListService {
     constructor(private http: HttpClient) {}
 
-    getParticipants() {
-       return this.http.get('http://localhost:3000/participants');
+    getParticipants(): Observable<Particips[]> {
+       return this.http.get<Particips[]>('http://localhost:3000/participants');
     }
 
     addNewApp(newParticipant: string, newDiscipline: string) {

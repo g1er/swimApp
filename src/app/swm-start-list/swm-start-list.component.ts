@@ -1,12 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import { SwmStartListService } from './swm-start-list.service';
 import { combineLatest, Observable, BehaviorSubject } from 'rxjs';
-import { map, filter } from 'rxjs/operators';
-interface Particips {
-  name: string;
-  discipline: string;
-  id: number;
-}
+import {map, filter, switchMap, take} from 'rxjs/operators';
+import { Particips} from '../models/interfaces';
 
 @Component({
   selector: 'app-swm-start-list',
@@ -15,9 +11,11 @@ interface Particips {
 })
 export class SwmStartListComponent {
 
-  participants: BehaviorSubject<any> = new BehaviorSubject([]);
+  participants: BehaviorSubject<Particips[]> = new BehaviorSubject([]);
   newParticipant: string = '';
   newDiscipline: string = '';
+  addedParticipant: Particips;
+  deletedParticipant: Particips;
   distances = [
     '50 butterfly',
     '100 butterfly',
@@ -50,24 +48,21 @@ export class SwmStartListComponent {
       ).subscribe();
   }
 
-
   addParticipants() {
-    combineLatest(
-      this.startListService.addNewApp(this.newParticipant, this.newDiscipline),
-      this.participants
-    ).pipe(
-        map(([participant, participants]) => {
-          const combineParticips = [...participants];
-          combineParticips.push(participant);
-          return combineParticips;
-        }),
+    this.startListService.addNewApp(this.newParticipant, this.newDiscipline).pipe(
+      switchMap((participant: Particips) => {
+        this.addedParticipant = participant;
+        return this.participants;
+      }),
+      take(1),
       map(participants => {
-        this.participants.next(participants);
+        const updatedParticipants = [...participants, this.addedParticipant];
+        this.participants.next(updatedParticipants);
         this.newParticipant = '';
         this.newDiscipline = '';
-        return participants;
+        return updatedParticipants;
       })
-      ).subscribe();
+    ).subscribe();
   }
 
   chooseDistance(){
@@ -82,11 +77,21 @@ export class SwmStartListComponent {
     })
   }
 
-  // deleteDiscipline(participant: any) {
-  //   this.startListService.delDiscipline(participant)
-  //   .subscribe((data) => {
-  //     this.participants = this.participants.filter(p => p.id != participant.id);
-  //   })
-  // }
+  deleteDiscipline(participant: any) {
+    this.startListService.delDiscipline(participant).pipe(
+      switchMap((participant: Particips) => {
+        this.deletedParticipant = participant;
+        return this.participants;
+      }),
+      take(1),
+      map(participants => {
+        const updatedParticipants = participants.filter(p => p.id !== participant.id);
+        this.participants.next(updatedParticipants);
+        }
+      )
+    )
+    .subscribe((data) => {
+    });
+  }
 
 }
